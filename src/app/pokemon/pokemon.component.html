@@ -1,0 +1,16 @@
+<div id="poke1">
+  <h1>Name : {{pokemon1.getName()}}</h1>
+  <h1>Power : {{pokemon1.getPower()}}</h1>
+  <h1>Life : {{pokemon1.getLife()}}</h1>
+  <h1>Speed : {{pokemon1.getSpeed()}}</h1>
+  <img height="200" src={{pokemon1.getUrlImg()}}>
+
+</div>
+<div id="poke2">
+  <h1>Name : {{pokemon2.getName()}}</h1>
+  <h1>Power : {{pokemon2.getPower()}}</h1>
+  <h1>Life : {{pokemon2.getLife()}}</h1>
+  <h1>Speed : {{pokemon2.getSpeed()}}</h1>
+  <img height="200" src={{pokemon2.getUrlImg()}}>
+</div>
+<button (click)="fight()">Fight</button>
