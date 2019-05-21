@@ -3,6 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let view;
+  let app;
+  let fixture;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -14,22 +17,35 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
+  beforeEach(async(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
+    view = fixture.elementRef.nativeElement;
+  }));
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'exo6'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('exo6');
   });
 
   it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to exo6!');
   });
+
+  // it('should display a button', () => {
+  //   fixture = TestBed.createComponent(AppComponent);
+  //   fixture.detectChanges();
+  //   const compiled = fixture.debugElement.nativeElement;
+  //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to exo6!');
+  // });
 });

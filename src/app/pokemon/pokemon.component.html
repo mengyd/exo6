@@ -1,0 +1,5 @@
+<div data-aos="fade-up" class="col-lg-4" *ngFor="let pokemon of pokemons; let i = index">
+  <svg id={{pokemon.getAvatar()}} class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"></svg>
+  <p>{{pokemon.getName()}}</p>
+  <p>{{pokemon.getLife()}}</p>
+</div>
