@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Pokemon} from './Pokemon';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {forkJoin, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,16 +31,19 @@ export class PokemonService {
     }
   }
 
-  getPokemon(name: string): Observable<any> {
+  getPokemon(name: string): Observable<Pokemon> {
     return this.http
       .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .pipe(
-        map(json => json)
+        map((x: any) => {
+          console.log(x);
+          return new Pokemon(x.name, x.sprites.front_default, x.stats[0].base_stat, x.stats[4].base_stat, x.stats[5].base_stat);
+        })
       );
   }
 
-  getAllPokemons(): Observable<any[]> {
-    const requests = Array<Observable<any>>();
+  getAllPokemons(): Observable<Pokemon[]> {
+    const requests = Array<Observable<Pokemon>>();
 
     for (let i = 1; i < 152; i++) {
       requests.push(this.getPokemon(`${i}`));

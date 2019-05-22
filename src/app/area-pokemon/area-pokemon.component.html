@@ -1,14 +1,17 @@
 <div class="jumbotron">
   <div class="row">
-    <div class="col-sm">
-      <button class="btn-warning" (click)="test()">test</button>
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
+    <button class="btn-warning" (click)="test()">test</button>
+  </div>
+  <div>
+    <div class="row" id="arena">
+        <div *ngFor="let poke of pokeArray, let i = index" class="col-sm" (click)="pokemonChoosen(i)">
+          <h6>{{i}}</h6>
+          <h6>{{poke.getName()}}</h6>
+          <img src="{{poke.getUrlImg()}}">
+          <h6> Power : {{poke.getPower()}}</h6>
+          <h6> Life : {{poke.getLife()}}</h6>
+          <h6> Speed : {{poke.getSpeed()}}</h6>
+        </div>
     </div>
   </div>
 </div>
