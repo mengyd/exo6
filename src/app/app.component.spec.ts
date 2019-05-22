@@ -1,13 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {PokemonComponent} from './pokemon/pokemon.component';
+import {AreaPokemonComponent} from './area-pokemon/area-pokemon.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        PokemonComponent
+        PokemonComponent,
+        AreaPokemonComponent
       ],
     }).compileComponents();
   }));
