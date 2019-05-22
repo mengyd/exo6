@@ -19,7 +19,7 @@ describe('PokemonComponent', () => {
     fixture.detectChanges();
   });
 
-  test('should create', () => {
+  test('should create', async(() => {
     expect(component).toBeTruthy();
-  });
+  }));
 });
