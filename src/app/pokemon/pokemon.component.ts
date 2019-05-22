@@ -23,6 +23,8 @@ export class PokemonComponent implements OnInit {
   message: Message;
   messages: Message[];
   isWinner = false;
+  today = new Date();
+
   ngOnInit() {
     this.allPokemons();
     this.pokemons = [];
