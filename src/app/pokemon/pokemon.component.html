@@ -1,18 +1,14 @@
-<div id="poke1">
-  <h1>Name : {{pokemon1.getName()}}</h1>
-  <h1>Power : {{pokemon1.getPower()}}</h1>
-  <h1>Life : {{pokemon1.getLife()}}</h1>
-  <h1>Speed : {{pokemon1.getSpeed()}}</h1>
-  <img height="200" src={{pokemon1.getUrlImg()}}>
-
+<div style="display: inline-block" *ngFor="let poke of pokemons">
+  <h5>Name : {{poke.getName()}}</h5>
+  <h5>Power : {{poke.getPower()}}</h5>
+  <h5>Life : {{poke.getLife()}}</h5>
+  <h5>Speed : {{poke.getSpeed()}}</h5>
+  <img height="200" src={{poke.getUrlImg()}}>
 </div>
-<div id="poke2">
-  <h1>Name : {{pokemon2.getName()}}</h1>
-  <h1>Power : {{pokemon2.getPower()}}</h1>
-  <h1>Life : {{pokemon2.getLife()}}</h1>
-  <h1>Speed : {{pokemon2.getSpeed()}}</h1>
-  <img height="200" src={{pokemon2.getUrlImg()}}>
+<div>
+  <button (click)="fight()">Fight</button>
+  <button (click)="pause()">Pause</button>
 </div>
-<button (click)="fight()">Fight</button>
-<button (click)="pause()">Pause</button>
-<button (click)="reset()">Reset</button>
+<div id="dialog">
+  <p *ngFor="let msg of messages">{{msg.getMessage()}}</p>
+</div>
