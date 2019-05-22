@@ -22,8 +22,9 @@ export class PokemonComponent implements OnInit {
   inter;
   message: Message;
   messages: Message[];
-
+  isWinner = false;
   ngOnInit() {
+    this.allPokemons();
     this.pokemons = [];
     this.pokemon1 = new Pokemon('pikachu', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png', 10, 3, 20);
     this.pokemon2 = new Pokemon('leviathan', 'https://www.pokebip.com/pokedex-images/artworks/130.png', 11, 4, 15);
@@ -32,22 +33,41 @@ export class PokemonComponent implements OnInit {
     this.pokemons.push(this.pokemon2);
   }
 
+  allPokemons() {
+    let i = 1;
+    for (i ; i < 152; i++) {
+      this.pokemonService.getPokemon(i.toString()).subscribe(test => {
+        console.log(test);
+      });
+    }
+  }
+
   fight() {
     this.inter = setInterval(() => {
-      this.pokemonService.goTOFight(this.pokemon1, this.pokemon2, this.attacker, this.inter);
-      if (this.attacker === this.pokemon1) {
-        this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
-          this.attacker.getPower() + ' hp a ' + this.pokemon2.getName(), 'yellow');
+      if (this.pokemon1.getLife() <= 0 || this.pokemon2.getLife() <= 0) {
+        if (this.pokemon1.getLife() > this.pokemon2.getLife()) {
+          this.message = new Message('le gagnant est ' + this.pokemon1.getName(), 'green');
+        } else {
+          this.message = new Message('le gagnant est ' + this.pokemon2.getName(), 'green');
+        }
+        this.isWinner = true;
         this.messageService.addMessage(this.message);
-        this.attacker = this.pokemon2;
+        clearInterval(this.inter);
       } else {
-        console.log('dekdekoeffekofeokfekofekofe');
-        this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
-          this.attacker.getPower() + ' hp a ' + this.pokemon1.getName(), 'blue');
-        this.attacker = this.pokemon1;
-        this.messageService.addMessage(this.message);
+        this.pokemonService.goTOFight(this.pokemon1, this.pokemon2, this.attacker, this.inter);
+        if (this.attacker === this.pokemon1) {
+          this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
+            this.attacker.getPower() + ' hp a ' + this.pokemon2.getName(), 'yellow');
+          this.messageService.addMessage(this.message);
+          this.attacker = this.pokemon2;
+        } else {
+          this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
+            this.attacker.getPower() + ' hp a ' + this.pokemon1.getName(), 'blue');
+          this.attacker = this.pokemon1;
+          this.messageService.addMessage(this.message);
+        }
+        this.getDialog();
       }
-      this.getDialog();
     }, 1000);
   }
 

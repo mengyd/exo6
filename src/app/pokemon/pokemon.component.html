@@ -1,14 +1,18 @@
+<div class="align-content-center jumbotron">
 <div style="display: inline-block" *ngFor="let poke of pokemons">
   <h5>Name : {{poke.getName()}}</h5>
   <h5>Power : {{poke.getPower()}}</h5>
   <h5>Life : {{poke.getLife()}}</h5>
   <h5>Speed : {{poke.getSpeed()}}</h5>
-  <img height="200" src={{poke.getUrlImg()}}>
+<img height="200" src={{poke.getUrlImg()}}>
 </div>
-<div>
-  <button (click)="fight()">Fight</button>
-  <button (click)="pause()">Pause</button>
+<div class="container">
+  <button class="btn-danger" (click)="fight()" [disabled]="isWinner">Fight</button>
+  <button class="btn-warning" (click)="pause()">Pause</button>
 </div>
-<div id="dialog">
-  <p *ngFor="let msg of messages">{{msg.getMessage()}}</p>
+<div class="container col-md-6">
+  <div *ngFor="let msg of messages" class="alert alert-secondary" role="alert">
+    {{msg.getMessage()}}
+  </div>
+</div>
 </div>
