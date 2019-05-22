@@ -22,4 +22,12 @@ describe('PokemonComponent', () => {
   test('should create', async(() => {
     expect(component).toBeTruthy();
   }));
+
+  test('pause should call clearInterval', async(() => {
+    fixture = TestBed.createComponent(PokemonComponent);
+    component = fixture.componentInstance;
+    window.clearInterval = jest.fn();
+    component.pause();
+    expect(clearInterval).toHaveBeenCalledWith(component.inter);
+  }));
 });
