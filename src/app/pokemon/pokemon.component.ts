@@ -25,8 +25,8 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit() {
     this.pokemons = [];
-    this.pokemon1 = new Pokemon('pikachu', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png', 10, 3, 30);
-    this.pokemon2 = new Pokemon('leviathan', 'https://www.pokebip.com/pokedex-images/artworks/130.png', 11, 4, 20);
+    this.pokemon1 = new Pokemon('pikachu', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png', 10, 3, 20);
+    this.pokemon2 = new Pokemon('leviathan', 'https://www.pokebip.com/pokedex-images/artworks/130.png', 11, 4, 15);
     this.attacker = this.pokemon1.compareSpeedOfPokemons(this.pokemon2);
     this.pokemons.push(this.pokemon1);
     this.pokemons.push(this.pokemon2);
@@ -34,7 +34,7 @@ export class PokemonComponent implements OnInit {
 
   fight() {
     this.inter = setInterval(() => {
-      this.pokemonService.goTOFight(this.pokemon1, this.pokemon2, this.attacker);
+      this.pokemonService.goTOFight(this.pokemon1, this.pokemon2, this.attacker, this.inter);
       if (this.attacker === this.pokemon1) {
         this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
           this.attacker.getPower() + ' hp a ' + this.pokemon2.getName(), 'yellow');

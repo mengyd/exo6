@@ -9,13 +9,15 @@ export class PokemonService {
   private i = 0;
   constructor() { }
 
-  goTOFight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon): void {
+  goTOFight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon, inter: any): void {
     if (pokemon1.getLife() > 0 && pokemon2.getLife() > 0) {
       if (attacker === pokemon1) {
         attacker.attack(pokemon2);
       } else {
         attacker.attack(pokemon1);
       }
+    } else {
+      clearInterval(inter);
     }
   }
 }
