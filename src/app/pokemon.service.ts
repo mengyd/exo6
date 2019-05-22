@@ -9,17 +9,13 @@ export class PokemonService {
   private i = 0;
   constructor() { }
 
-  goTOFight(pokemon1: Pokemon, pokemon2: Pokemon): void {
+  goTOFight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon): void {
     if (pokemon1.getLife() > 0 && pokemon2.getLife() > 0) {
-      if (pokemon1 === pokemon1.compareSpeedOfPokemons(pokemon2)) {
-        pokemon1.attack(pokemon2);
-        pokemon2.attack(pokemon1);
+      if (attacker === pokemon1) {
+        attacker.attack(pokemon2);
       } else {
-        pokemon2.attack(pokemon1);
-        pokemon1.attack(pokemon2);
+        attacker.attack(pokemon1);
       }
-      console.log("pokemon1.life - " + pokemon1.getLife());
-      console.log("pokemon2.life - " + pokemon2.getLife());
     }
   }
 }
