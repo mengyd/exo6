@@ -19,7 +19,7 @@ export class PokemonService {
     withCredentials: false
   };
 
-  goTOFight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon, inter: any): void {
+  goTOFight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon, inter: any, counter: any): void {
     if (pokemon1.getLife() > 0 && pokemon2.getLife() > 0) {
       if (attacker === pokemon1) {
         attacker.attack(pokemon2);
@@ -27,6 +27,7 @@ export class PokemonService {
         attacker.attack(pokemon1);
       }
     } else {
+      clearInterval(counter);
       clearInterval(inter);
     }
   }
