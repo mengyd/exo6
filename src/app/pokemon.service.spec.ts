@@ -44,10 +44,25 @@ describe('PokemonService', () => {
     const pokemonService = TestBed.get(PokemonService);
     const http = TestBed.get(HttpTestingController);
     // tslint:disable-next-line:max-line-length
-    const mockedPokemons = {name: 'Pikachu', sprites: {front_default: 'image1'}, stats: [{base_stat: 10}, {base_stat: 20}, {base_stat: 30}, {base_stat: 40}, {base_stat: 50}, {base_stat: 60}]};
+    const mockedPokemon = {name: 'Pikachu', sprites: {front_default: 'image1'}, stats: [{base_stat: 10}, {base_stat: 20}, {base_stat: 30}, {base_stat: 40}, {base_stat: 50}, {base_stat: 60}]};
 
     pokemonService.getPokemon('Pikachu')
       .subscribe();
-    http.expectOne('https://pokeapi.co/api/v2/pokemon/Pikachu').flush(mockedPokemons);
+    http.expectOne('https://pokeapi.co/api/v2/pokemon/Pikachu').flush(mockedPokemon);
   }));
+
+  // test('should return array of pokemons', async(() => {
+  //   const pokemonService = TestBed.get(PokemonService);
+  //   const http = TestBed.get(HttpTestingController);
+  //   const mockedPokemons = [""
+  //     {name: 'Pikachu', sprites: {front_default: 'image1'}, stats: [
+  //       {base_stat: 10}, {base_stat: 20}, {base_stat: 30}, {base_stat: 40}, {base_stat: 50}, {base_stat: 60}
+  //       ]
+  //     },
+  //     {name: 'Pikachu', sprites: {front_default: 'image1'},
+  //       stats: [
+  //         {base_stat: 10}, {base_stat: 20}, {base_stat: 30}, {base_stat: 40}, {base_stat: 50}, {base_stat: 60}
+  //         ]
+  //     }];
+  // }));
 });
