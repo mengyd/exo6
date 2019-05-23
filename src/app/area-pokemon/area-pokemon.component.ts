@@ -27,7 +27,7 @@ export class AreaPokemonComponent implements OnInit {
     console.log('---------------- ' + this.pokeArray);
   }
 
-  pokemonChoosen(id: number){
+  pokemonChoosen(id: number) {
     console.log(this.pokeArray[id]);
 
   }

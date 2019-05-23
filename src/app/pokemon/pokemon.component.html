@@ -11,13 +11,14 @@
     </div>
   </div>
   <div class="container">
-    <button class="btn-danger" (click)="fight()" [disabled]="isWinner">Fight</button>
+    <button class="btn-danger" (click)="countTime(); fight()" [disabled]="isWinner">Fight</button>
     <button class="btn-warning" (click)="pause()">Pause</button>
   </div>
 
-  <div align="center">{{today | date}}</div>
+
 
   <div class="container col-md-6">
+    <div align="center">{{today | date:'dd-MMMM-yyyy h:mm:s a'}}</div>
     <div *ngFor="let msg of messages" [ngStyle]="{color: msg.color}" class="alert alert-dark" role="alert">
       {{msg.getMessage()}}
     </div>

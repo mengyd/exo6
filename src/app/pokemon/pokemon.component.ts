@@ -20,10 +20,11 @@ export class PokemonComponent implements OnInit {
   pokemon2: Pokemon;
   attacker: Pokemon;
   inter;
+  counter;
   message: Message;
   messages: Message[];
   isWinner = false;
-  today = new Date();
+  today: number;
 
   ngOnInit() {
     this.allPokemons();
@@ -44,6 +45,12 @@ export class PokemonComponent implements OnInit {
     }
   }
 
+  countTime() {
+    this.counter = setInterval(() => {
+      this.today = Date.now();
+    }, 1000);
+  }
+
   fight() {
     this.inter = setInterval(() => {
       if (this.pokemon1.getLife() <= 0 || this.pokemon2.getLife() <= 0) {
@@ -54,9 +61,10 @@ export class PokemonComponent implements OnInit {
         }
         this.isWinner = true;
         this.messageService.addMessage(this.message);
+        clearInterval(this.counter);
         clearInterval(this.inter);
       } else {
-        this.pokemonService.goTOFight(this.pokemon1, this.pokemon2, this.attacker, this.inter);
+        this.pokemonService.goTOFight(this.pokemon1, this.pokemon2, this.attacker, this.inter, this.counter);
         if (this.attacker === this.pokemon1) {
           this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
             this.attacker.getPower() + ' hp a ' + this.pokemon2.getName(), 'yellow');
@@ -75,6 +83,7 @@ export class PokemonComponent implements OnInit {
 
   pause() {
     clearInterval(this.inter);
+    clearInterval(this.counter);
   }
 
   getDialog() {
