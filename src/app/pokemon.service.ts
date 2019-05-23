@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Pokemon} from './Pokemon';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
 import {forkJoin, Observable} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
 @Injectable({

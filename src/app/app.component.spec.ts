@@ -2,6 +2,8 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {PokemonComponent} from './pokemon/pokemon.component';
 import {AreaPokemonComponent} from './area-pokemon/area-pokemon.component';
+import {HttpTestingController} from '@angular/common/http/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,6 +13,8 @@ describe('AppComponent', () => {
         PokemonComponent,
         AreaPokemonComponent
       ],
+      providers: [AppComponent],
+      imports: [HttpClientTestingModule]
     }).compileComponents();
   }));
 
