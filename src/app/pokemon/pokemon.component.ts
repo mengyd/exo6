@@ -52,12 +52,16 @@ export class PokemonComponent implements OnInit {
   }
 
   fight() {
-    this.pokemonService.fight(this.pokemon1, this.pokemon2, this.attacker).subscribe(
+    const subscriber = this.pokemonService.fight(this.pokemon1, this.pokemon2, this.attacker).subscribe(
       message => {
         this.messageService.addMessage(message);
         this.messages = this.messageService.getAllMessage();
+        if (message.getMessage() === 'Fin') {
+          subscriber.unsubscribe();
+        }
       }
     );
+
     this.getDialog();
      /* if (this.pokemon1.getLife() <= 0 || this.pokemon2.getLife() <= 0) {
         if (this.pokemon1.getLife() > this.pokemon2.getLife()) {

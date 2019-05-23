@@ -11,7 +11,7 @@ import {MessageService} from './message.service';
 export class PokemonService {
   private poke1Faster: boolean;
   private i = 0;
-  private isWinner: boolean;
+  private isWinner: boolean = false;
   private source = interval(1000);
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
@@ -52,8 +52,10 @@ export class PokemonService {
               return this.message;
             }
           }
-        } else {clearInterval();}
-        return this.message;
+          return this.message;
+        } else {
+          return this.message = new  Message('Fin', 'purple');
+        }
       })
     );
   }
