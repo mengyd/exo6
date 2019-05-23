@@ -1,0 +1,22 @@
+@font-face {
+  font-family: pokemon;
+  src: url(/assets/Pokemon-Solid.ttf) format("truetype");
+}
+
+#arena {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  font-family: pokemon;
+}
+
+.col-sm {
+  margin: 20px;
+  padding: 10px;
+  background: #a9b176;
+  border: 1px solid black;
+}
+
+.col-sm:hover {
+  background-color: gold;
+}

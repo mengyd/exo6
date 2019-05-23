@@ -14,17 +14,21 @@ export class AreaPokemonComponent implements OnInit {
 
   ngOnInit() {
     this.pokeArray = [];
-    this.allPokemons();
+    this.test();
   }
 
-  allPokemons() {
-    let i = 1;
-    for (i ; i < 152; i++) {
-      this.pokemonService.getPokemon(i.toString()).subscribe(test => {
-        this.pokeArray.push(new Pokemon(test.name, test.sprites.front_default,
-          test.stats[0].base_stat, test.stats[4].base_stat, test.stats[5].base_stat));
-      });
-    }
-    console.log('--------------------------- ' + this.pokeArray + ' --------------------------- ');
+  test() {
+    this.pokemonService.getAllPokemons().subscribe(
+      x =>  {
+        console.log(x);
+        this.pokeArray = x;
+      }
+    );
+    console.log('---------------- ' + this.pokeArray);
+  }
+
+  pokemonChoosen(id: number){
+    console.log(this.pokeArray[id]);
+
   }
 }
