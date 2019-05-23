@@ -52,8 +52,18 @@ export class PokemonComponent implements OnInit {
   }
 
   fight() {
-    this.inter = setInterval(() => {
-      if (this.pokemon1.getLife() <= 0 || this.pokemon2.getLife() <= 0) {
+    const subscriber = this.pokemonService.fight(this.pokemon1, this.pokemon2, this.attacker).subscribe(
+      message => {
+        this.messageService.addMessage(message);
+        this.messages = this.messageService.getAllMessage();
+        if (message.getMessage() === 'Fin') {
+          subscriber.unsubscribe();
+        }
+      }
+    );
+
+    this.getDialog();
+     /* if (this.pokemon1.getLife() <= 0 || this.pokemon2.getLife() <= 0) {
         if (this.pokemon1.getLife() > this.pokemon2.getLife()) {
           this.message = new Message('le gagnant est ' + this.pokemon1.getName(), 'green');
         } else {
@@ -77,8 +87,7 @@ export class PokemonComponent implements OnInit {
           this.messageService.addMessage(this.message);
         }
         this.getDialog();
-      }
-    }, 1000);
+      }*/
   }
 
   pause() {
