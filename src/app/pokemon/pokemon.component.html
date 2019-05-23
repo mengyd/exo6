@@ -3,11 +3,11 @@
     <div>
       <h5 *ngIf="poke.getLife()>0">Name : {{poke.getName()}}</h5>
       <h5 *ngIf="poke.getLife()<=0">Name : {{poke.getName()}} est mort</h5>
-      <h5>Power : {{poke.getPower()}}</h5>
-      <h5>Life : {{poke.getLife()}}</h5>
-      <h5>Speed : {{poke.getSpeed()}}</h5>
+      <h5 *ngIf="poke.getLife()>0">Power : {{ poke.getPower() | number: '1.2-2' }}</h5>
+      <h5 *ngIf="poke.getLife()>0">Life : {{poke.getLife()}}</h5>
+      <h5 *ngIf="poke.getLife()>0">Speed : {{poke.getSpeed()}}</h5>
       <img *ngIf="poke.getLife() > 0" height="200" src={{poke.getUrlImg()}}>
-      <img *ngIf="poke.getLife() <= 0" class="displaynone" height="200" src={{poke.getUrlImg()}}>
+      <img *ngIf="poke.getLife() <= 0" height="300" src="../giphy.webp">
     </div>
   </div>
   <div class="container">
