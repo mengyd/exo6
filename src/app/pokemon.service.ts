@@ -5,6 +5,7 @@ import {forkJoin, interval, Observable} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
 import {Message} from './Message';
 import {MessageService} from './message.service';
+import {THIS_EXPR} from "@angular/compiler/src/output/output_ast";
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +14,7 @@ export class PokemonService {
   private i = 0;
   private isWinner: boolean = false;
   private source = interval(1000);
+  private isPaused: boolean = false;
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
   private httpOptions = {
@@ -26,6 +28,7 @@ export class PokemonService {
 
   fight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon): Observable<Message> {
     return interval(1000).pipe(
+      filter(() => !this.isPaused),
       map(x => {
         if (this.isWinner === false) {
           if (pokemon1.getLife() <= 0 || pokemon2.getLife() <= 0) {
@@ -91,5 +94,9 @@ export class PokemonService {
     }
 
     return forkJoin(requests);
+  }
+
+  pause(){
+   this.isPaused = !this.isPaused;
   }
 }
