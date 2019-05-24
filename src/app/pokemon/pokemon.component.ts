@@ -88,38 +88,11 @@ export class PokemonComponent implements OnInit {
         }
       }
     );
-
     this.getDialog();
-     /* if (this.pokemon1.getLife() <= 0 || this.pokemon2.getLife() <= 0) {
-        if (this.pokemon1.getLife() > this.pokemon2.getLife()) {
-          this.message = new Message('le gagnant est ' + this.pokemon1.getName(), 'green');
-        } else {
-          this.message = new Message('le gagnant est ' + this.pokemon2.getName(), 'green');
-        }
-        this.isWinner = true;
-        this.messageService.addMessage(this.message);
-        clearInterval(this.counter);
-        clearInterval(this.inter);
-      } else {
-        this.pokemonService.goTOFight(this.pokemon1, this.pokemon2, this.attacker, this.inter, this.counter);
-        if (this.attacker === this.pokemon1) {
-          this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
-            this.attacker.getPower() + ' hp a ' + this.pokemon2.getName(), 'yellow');
-          this.messageService.addMessage(this.message);
-          this.attacker = this.pokemon2;
-        } else {
-          this.message = new Message(this.attacker.getName() + ' attack il enleve ' +
-            this.attacker.getPower() + ' hp a ' + this.pokemon1.getName(), 'blue');
-          this.attacker = this.pokemon1;
-          this.messageService.addMessage(this.message);
-        }
-        this.getDialog();
-      }*/
   }
 
   pause() {
-    clearInterval(this.inter);
-    clearInterval(this.counter);
+    this.pokemonService.pause();
   }
 
   getDialog() {

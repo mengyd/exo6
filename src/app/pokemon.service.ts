@@ -5,16 +5,20 @@ import {forkJoin, interval, Observable} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
 import {Message} from './Message';
 import {MessageService} from './message.service';
+import {THIS_EXPR} from "@angular/compiler/src/output/output_ast";
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  // constructor(private http: HttpClient, private messageService: MessageService) { }
   private poke1Faster: boolean;
   private i = 0;
   private isWinner = false;
   private source = interval(1000);
+  private isPaused: boolean = false;
+
+  constructor(private http: HttpClient, private messageService: MessageService) { }
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -28,6 +32,7 @@ export class PokemonService {
 
   fight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon): Observable<Message> {
     return interval(1000).pipe(
+      filter(() => !this.isPaused),
       map(x => {
         if (this.isWinner === false) {
           if (pokemon1.getLife() <= 0 || pokemon2.getLife() <= 0) {
@@ -95,16 +100,7 @@ export class PokemonService {
     return forkJoin(requests);
   }
 
-  getWinner(): boolean {
-    return this.isWinner;
-  }
-
-  pickPokemons(pokemon1, pokemon2): void {
-    this.pokemons.push(pokemon1);
-    this.pokemons.push(pokemon2);
-  }
-
-  getPokemons(): Pokemon[] {
-    return this.pokemons;
+  pause() {
+   this.isPaused = !this.isPaused;
   }
 }
