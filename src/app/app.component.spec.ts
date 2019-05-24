@@ -23,14 +23,13 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-/*
-  test(`should have as title 'exo'`, async(() => {
+
+/*  test(`should have as title 'exo'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('exo');
-  }));
-
-  test('should render title in a h1 tag', async(() => {
+  }));*/
+  /*test('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

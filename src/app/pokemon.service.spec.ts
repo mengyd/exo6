@@ -39,14 +39,14 @@ describe('PokemonService', () => {
     window.clearInterval = jest.fn();
     service.goTOFight(pokemon1, diedPokemon, pokemon1);
     expect(clearInterval).toHaveBeenCalledWith(1000);
-  }));*/
-=======
+  }));
+
     // window.clearInterval = jest.fn();
     service.goTOFight(pokemon1, diedPokemon, pokemon1);
     expect(service.getWinner()).toBe(true);
     // expect(clearInterval).toHaveBeenCalledWith(1000);
-  }));
->>>>>>> d4ec166772c918c515b04fc195aa29842d6283f1
+  })); */
+
 
   test('should return 1 pokemon', async(() => {
     const pokemonService = TestBed.get(PokemonService);
