@@ -6,6 +6,10 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 import { AreaPokemonComponent } from './area-pokemon/area-pokemon.component';
 import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PokemonService} from './pokemon.service';
+import {MessageService} from './message.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +20,14 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    PokemonService, MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
