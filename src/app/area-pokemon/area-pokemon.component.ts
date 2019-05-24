@@ -53,12 +53,12 @@ export class AreaPokemonComponent implements OnInit {
     }
   }
 
-  choose2Pokemons() {
-    this.pokemonService.pickPokemons(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
-    // this.pokemons.push(this.pokeArray[this.idChoose1]);
-    // this.pokemons.push(this.pokeArray[this.idChoose2]);
-    console.log(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
-  }
+  // choose2Pokemons() {
+  //   this.pokemonService.pickPokemons(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
+  //   // this.pokemons.push(this.pokeArray[this.idChoose1]);
+  //   // this.pokemons.push(this.pokeArray[this.idChoose2]);
+  //   console.log(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
+  // }
 
   poke() {
     console.log('lol');

@@ -4,6 +4,7 @@ import {PokemonComponent} from './pokemon/pokemon.component';
 import {AreaPokemonComponent} from './area-pokemon/area-pokemon.component';
 import {HttpTestingController} from '@angular/common/http/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,10 +12,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         PokemonComponent,
-        AreaPokemonComponent
+        AreaPokemonComponent,
       ],
       providers: [AppComponent],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule, RouterTestingModule]
     }).compileComponents();
   }));
 
