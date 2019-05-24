@@ -85,7 +85,7 @@ export class PokemonService {
       .pipe(
         map((x: any) => {
           // console.log(x);
-          return new Pokemon(x.name, x.sprites.front_default, x.stats[0].base_stat, x.stats[4].base_stat, x.stats[5].base_stat);
+          return new Pokemon(x.name, x.sprites.front_default, x.stats[0].base_stat, x.stats[4].base_stat, x.stats[5].base_stat * 10 );
         })
       );
   }

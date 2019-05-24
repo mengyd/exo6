@@ -10,11 +10,26 @@
           <h6> Speed : {{poke.getSpeed()}}</h6>
         </div>
     </div>
-
     <form>
-      <input name="poke1" value="{{this.pokeArray[this.idChoose1].getName()}}">
-      <input name="poke2" value="{{this.pokeArray[this.idChoose2].getName()}}">
-      <button *ngIf="this.num > 1" type="submit" routerLink="/fight/{{this.idChoose1}}/{{this.idChoose2}}">Valid</button>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >Fighter1</span>
+        </div>
+        <input type="text" class="form-control"  aria-describedby="inputGroup-sizing-sm" name="poke1" value="{{this.idChoose1}}">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >Fighter2</span>
+        </div>
+        <input type="text" class="form-control"  aria-describedby="inputGroup-sizing-sm" name="poke2" value="{{this.idChoose2}}">
+      </div>
+      <button *ngIf="this.num > 1" type="button" class="btn btn-primary" routerLink="/fight/{{this.idChoose1}}/{{this.idChoose2}}">Valid</button>
     </form>
+
+<!--    <form>-->
+<!--      <input name="poke1" value="{{this.pokeArray[this.idChoose1].getName()}}">-->
+<!--      <input name="poke2" value="{{this.pokeArray[this.idChoose2].getName()}}">-->
+<!--      <button *ngIf="this.num > 1" type="submit" routerLink="/fight/{{this.idChoose1}}/{{this.idChoose2}}">Valid</button>-->
+<!--    </form>-->
   </div>
 </div>
