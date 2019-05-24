@@ -30,7 +30,7 @@ import {RouterTestingModule} from "@angular/router/testing";
     RouterTestingModule
   ],
   providers: [
-    PokemonService, MessageService, ActivatedRoute,
+    PokemonService, MessageService
   ],
   bootstrap: [AppComponent]
 })
