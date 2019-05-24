@@ -1,7 +1,4 @@
 <div class="jumbotron">
-  <div class="row">
-    <button class="btn-warning" (click)="choose2Pokemons()" routerLink="/fight">test</button>
-  </div>
   <div>
     <div class="row" id="arena">
         <div *ngFor="let poke of pokeArray, let i = index" class="col-sm" (click)="pokemonChoosen(i)">
@@ -13,5 +10,11 @@
           <h6> Speed : {{poke.getSpeed()}}</h6>
         </div>
     </div>
+
+    <form (submit)="choose2Pokemons()">
+      <input name="poke1" value="{{this.idChoose1}}">
+      <input name="poke2" value="{{this.idChoose2}}">
+      <button type="submit" routerLink="/fight/{{this.idChoose1}}/{{this.idChoose2}}">Valid</button>
+    </form>
   </div>
 </div>
