@@ -10,8 +10,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PokemonService} from './pokemon.service';
 import {MessageService} from './message.service';
-import {ActivatedRoute, RouterModule} from "@angular/router";
-import {RouterTestingModule} from "@angular/router/testing";
+import {ActivatedRoute, RouterModule} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
 
 @NgModule({
   declarations: [
