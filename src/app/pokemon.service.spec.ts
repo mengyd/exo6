@@ -22,22 +22,23 @@ describe('PokemonService', () => {
 
   test('leviathan should be attacked', async (() => {
     const service: PokemonService = TestBed.get(PokemonService);
-    service.goTOFight(pokemon1, pokemon2, pokemon1, 1000, 200);
+    service.goTOFight(pokemon1, pokemon2, pokemon1);
     expect(pokemon2.getLife()).toBe(12);
   }));
 
   test('pikachu should be attacked', async (() => {
     const service: PokemonService = TestBed.get(PokemonService);
-    service.goTOFight(pokemon1, pokemon2, pokemon2, 1000, 200);
+    service.goTOFight(pokemon1, pokemon2, pokemon2);
     expect(pokemon1.getLife()).toBe(16);
   }));
 
   test('should called clearInterval', async(() => {
     const service: PokemonService = TestBed.get(PokemonService);
     const diedPokemon = new Pokemon('leviathan', 'https://www.pokebip.com/pokedex-images/artworks/130.png', 11, 4, 0);
-    window.clearInterval = jest.fn();
-    service.goTOFight(pokemon1, diedPokemon, pokemon1, 1000, 200);
-    expect(clearInterval).toHaveBeenCalledWith(1000);
+    // window.clearInterval = jest.fn();
+    service.goTOFight(pokemon1, diedPokemon, pokemon1);
+    expect(service.getWinner()).toBe(true);
+    // expect(clearInterval).toHaveBeenCalledWith(1000);
   }));
 
   test('should return 1 pokemon', async(() => {

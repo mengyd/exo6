@@ -19,7 +19,7 @@
 
   <div class="container col-md-6">
     <div align="center">{{today | date:'dd-MMMM-yyyy h:mm:s a'}}</div>
-    <div *ngFor="let msg of messages" [ngStyle]="{color: msg.color}" class="alert alert-dark" role="alert">
+    <div *ngFor="let msg of messages" [ngStyle]="{color: msg.getColor()}" class="alert alert-dark" role="alert">
       {{msg.getMessage()}}
     </div>
   </div>

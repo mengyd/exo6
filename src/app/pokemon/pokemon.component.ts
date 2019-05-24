@@ -28,9 +28,11 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit() {
     this.allPokemons();
-    this.pokemons = [];
-    this.pokemon1 = new Pokemon('pikachu', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png', 10, 3, 20);
-    this.pokemon2 = new Pokemon('leviathan', 'https://www.pokebip.com/pokedex-images/artworks/130.png', 11, 4, 15);
+    this.pokemons = this.pokemonService.getPokemons();
+    // this.pokemon1 = new Pokemon('pikachu', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png', 10, 3, 20);
+    // this.pokemon2 = new Pokemon('leviathan', 'https://www.pokebip.com/pokedex-images/artworks/130.png', 11, 4, 15);
+    this.pokemon1 = this.pokemons[0];
+    this.pokemon2 = this.pokemons[1];
     this.attacker = this.pokemon1.compareSpeedOfPokemons(this.pokemon2);
     this.pokemons.push(this.pokemon1);
     this.pokemons.push(this.pokemon2);

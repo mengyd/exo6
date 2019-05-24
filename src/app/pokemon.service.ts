@@ -9,12 +9,12 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class PokemonService {
-  private poke1Faster: boolean;
-  private i = 0;
-  private isWinner: boolean = false;
-  private source = interval(1000);
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
+  private poke1Faster: boolean;
+  private i = 0;
+  private isWinner = false;
+  private source = interval(1000);
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -23,6 +23,8 @@ export class PokemonService {
     withCredentials: false
   };
   private message: Message;
+
+  private pokemons: Pokemon[] = [];
 
   fight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon): Observable<Message> {
     return interval(1000).pipe(
@@ -91,5 +93,18 @@ export class PokemonService {
     }
 
     return forkJoin(requests);
+  }
+
+  getWinner(): boolean {
+    return this.isWinner;
+  }
+
+  pickPokemons(pokemon1, pokemon2): void {
+    this.pokemons.push(pokemon1);
+    this.pokemons.push(pokemon2);
+  }
+
+  getPokemons(): Pokemon[] {
+    return this.pokemons;
   }
 }

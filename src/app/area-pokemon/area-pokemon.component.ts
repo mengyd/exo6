@@ -10,6 +10,9 @@ import {Pokemon} from '../Pokemon';
 export class AreaPokemonComponent implements OnInit {
 
   private pokeArray: Pokemon[];
+  private num = 0;
+  private idChoose1: number;
+  private idChoose2: number;
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
@@ -27,8 +30,27 @@ export class AreaPokemonComponent implements OnInit {
     console.log('---------------- ' + this.pokeArray);
   }
 
-  pokemonChoosen(id: number) {
-    console.log(this.pokeArray[id]);
+  // pokemonChoosen(id: number) {
+  //   console.log(this.pokeArray[id]);
+  // }
 
+  pokemonChoosen(id: number) {
+    if (this.num < 1) {
+      this.idChoose1 = id;
+      this.num++;
+      console.log(this.idChoose1, this.num);
+    } else if (this.num < 2) {
+      this.idChoose2 = id;
+      this.num++;
+      console.log(this.idChoose2, this.num);
+    }
   }
+
+  choose2Pokemons() {
+    this.pokemonService.pickPokemons(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
+    console.log(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
+  }
+
+
+
 }

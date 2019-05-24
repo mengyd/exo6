@@ -6,6 +6,7 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 import { AreaPokemonComponent } from './area-pokemon/area-pokemon.component';
 import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

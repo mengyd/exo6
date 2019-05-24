@@ -1,6 +1,6 @@
 export class Pokemon {
 
-  constructor(private name: string, private urlImg: string, private speed: number, private power: number, private life: number){}
+  constructor(private name: string, private urlImg: string, private speed: number, private power: number, private life: number) {}
 
   displayPokemon(): void {
     console.log(this.name + ' - ' + this.speed);
