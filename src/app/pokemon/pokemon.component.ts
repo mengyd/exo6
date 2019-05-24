@@ -31,19 +31,22 @@ export class PokemonComponent implements OnInit {
       .subscribe((params: Params): void => {
         console.log(params.fighter1);
         console.log(params.fighter2);
-        this.pokemonService.getPokemon(params.fighter1).subscribe(
+        this.pokemonService.getPokemon(String(Number(params.fighter1) + 1)).subscribe(
           pok => {
             console.log(pok);
             this.pokemons.push(pok);
+            console.log(this.pokemons);
           }
         );
-        this.pokemonService.getPokemon(params.fighter2).subscribe(
+        this.pokemonService.getPokemon(String(Number(params.fighter2) + 1)).subscribe(
           pok => {
             console.log(pok);
             this.pokemons.push(pok);
           }
         );
       });
+
+
   }
 
   // allPokemons() {
@@ -70,8 +73,12 @@ export class PokemonComponent implements OnInit {
   }
 
   fight() {
-    this.pokemon2 = this.pokemons.pop();
-    this.pokemon1 = this.pokemons.pop();
+    this.pokemon2 = this.pokemons[0];
+    this.pokemon1 = this.pokemons[1];
+    this.attacker = this.pokemon1.compareSpeedOfPokemons(this.pokemon2);
+    console.log(this.pokemon1);
+    console.log(this.pokemon2);
+
     const subscriber = this.pokemonService.fight(this.pokemon1, this.pokemon2, this.attacker).subscribe(
       message => {
         this.messageService.addMessage(message);
