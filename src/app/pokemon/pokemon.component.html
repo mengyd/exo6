@@ -6,7 +6,7 @@
       <h5 *ngIf="poke.getLife()>0">Power : {{ poke.getPower() | number: '1.2-2' }}</h5>
       <h5 *ngIf="poke.getLife()>0">Life : {{poke.getLife()}}</h5>
       <h5 *ngIf="poke.getLife()>0">Speed : {{poke.getSpeed()}}</h5>
-      <img *ngIf="poke.getLife() > 0" height="200" src={{poke.getUrlImg()}}>
+      <img *ngIf="poke.getLife() > 0" height="200" src="{{poke.getUrlImg()}}">
       <img *ngIf="poke.getLife() <= 0" height="300" src="https://media2.giphy.com/media/3oFzmrqh43AvYwn9Cw/giphy.gif">
     </div>
   </div>
@@ -17,7 +17,7 @@
 
   <div class="container col-md-6">
     <div align="center">{{today | date:'dd-MMMM-yyyy h:mm:s a'}}</div>
-    <div *ngFor="let msg of messages" [ngStyle]="{color: msg.color}" class="alert alert-dark" role="alert">
+    <div *ngFor="let msg of messages" [ngStyle]="{color: msg.getColor()}" class="alert alert-dark" role="alert">
       {{msg.getMessage()}}
     </div>
   </div>

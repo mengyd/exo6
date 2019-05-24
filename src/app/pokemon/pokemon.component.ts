@@ -4,6 +4,7 @@ import {Pokemon} from '../Pokemon';
 import {interval} from 'rxjs';
 import {MessageService} from '../message.service';
 import {Message} from '../Message';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-pokemon',
@@ -11,13 +12,7 @@ import {Message} from '../Message';
   styleUrls: ['./pokemon.component.css']
 })
 export class PokemonComponent implements OnInit {
-
-  constructor(private pokemonService: PokemonService, private messageService: MessageService) {
-  }
-
-  pokemons: Pokemon[];
-  pokemon1: Pokemon;
-  pokemon2: Pokemon;
+  pokemons: Pokemon[] = [];
   attacker: Pokemon;
   inter;
   counter;
@@ -25,24 +20,50 @@ export class PokemonComponent implements OnInit {
   messages: Message[];
   isWinner = false;
   today: number;
+  private pokemon1: Pokemon;
+  private pokemon2: Pokemon;
 
-  ngOnInit() {
-    this.allPokemons();
-    this.pokemons = [];
-    this.pokemon1 = new Pokemon('pikachu', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png', 10, 3, 20);
-    this.pokemon2 = new Pokemon('leviathan', 'https://www.pokebip.com/pokedex-images/artworks/130.png', 11, 4, 15);
-    this.attacker = this.pokemon1.compareSpeedOfPokemons(this.pokemon2);
-    this.pokemons.push(this.pokemon1);
-    this.pokemons.push(this.pokemon2);
+  constructor(private pokemonService: PokemonService, private messageService: MessageService, private route: ActivatedRoute) {
   }
 
-  allPokemons() {
-    let i = 1;
-    for (i ; i < 152; i++) {
-      this.pokemonService.getPokemon(i.toString()).subscribe(test => {
-        console.log(test);
+  ngOnInit() {
+    this.route.params
+      .subscribe((params: Params): void => {
+        console.log(params.fighter1);
+        console.log(params.fighter2);
+        this.pokemonService.getPokemon(String(Number(params.fighter1) + 1)).subscribe(
+          pok => {
+            console.log(pok);
+            this.pokemons.push(pok);
+            console.log(this.pokemons);
+          }
+        );
+        this.pokemonService.getPokemon(String(Number(params.fighter2) + 1)).subscribe(
+          pok => {
+            console.log(pok);
+            this.pokemons.push(pok);
+          }
+        );
       });
-    }
+
+
+  }
+
+  // allPokemons() {
+  //   let i = 0;
+  //   for (i ; i < 152; i++) {
+  //     this.pokemonService.getPokemon(i.toString()).subscribe(test => {
+  //       console.log(test);
+  //       this.pokemons.push(test);
+  //       this.pokeArray.push(test);
+  //       // console.log(this.pokeArray[i]);
+  //       console.log(this.pokeArray[i - 1]);
+  //     });
+  //   }
+  // }
+
+  test() {
+    /*console.log(this.pokemonService.getPokemon(`${i}`));*/
   }
 
   countTime() {
@@ -52,6 +73,12 @@ export class PokemonComponent implements OnInit {
   }
 
   fight() {
+    this.pokemon2 = this.pokemons[0];
+    this.pokemon1 = this.pokemons[1];
+    this.attacker = this.pokemon1.compareSpeedOfPokemons(this.pokemon2);
+    console.log(this.pokemon1);
+    console.log(this.pokemon2);
+
     const subscriber = this.pokemonService.fight(this.pokemon1, this.pokemon2, this.attacker).subscribe(
       message => {
         this.messageService.addMessage(message);

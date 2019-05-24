@@ -11,8 +11,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AreaPokemonComponent implements OnInit {
 
   private pokeArray: Pokemon[];
+  private num = 0;
+  private idChoose1: number;
+  private idChoose2: number;
   constructor(private pokemonService: PokemonService, private formBuilder: FormBuilder) { }
   pokeForm: FormGroup;
+  private pokemons: Pokemon[] = [];
+
   ngOnInit() {
     this.pokeArray = [];
     this.test();
@@ -32,11 +37,33 @@ export class AreaPokemonComponent implements OnInit {
     console.log('---------------- ' + this.pokeArray);
   }
 
+  // pokemonChoosen(id: number) {
+  //   console.log(this.pokeArray[id]);
+  // }
+
   pokemonChoosen(id: number) {
-    console.log(this.pokeArray[id]);
+    if (this.num < 1) {
+      this.idChoose1 = id;
+      this.num++;
+      console.log(this.idChoose1, this.num);
+    } else if (this.num < 2) {
+      this.idChoose2 = id;
+      this.num++;
+      console.log(this.idChoose2, this.num);
+    }
   }
 
-  poke(){
+  choose2Pokemons() {
+    this.pokemonService.pickPokemons(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
+    // this.pokemons.push(this.pokeArray[this.idChoose1]);
+    // this.pokemons.push(this.pokeArray[this.idChoose2]);
+    console.log(this.pokeArray[this.idChoose1], this.pokeArray[this.idChoose2]);
+  }
+
+  poke() {
     console.log('lol');
   }
+
+
+
 }

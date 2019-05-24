@@ -10,9 +10,11 @@ import {THIS_EXPR} from "@angular/compiler/src/output/output_ast";
   providedIn: 'root'
 })
 export class PokemonService {
+
+  // constructor(private http: HttpClient, private messageService: MessageService) { }
   private poke1Faster: boolean;
   private i = 0;
-  private isWinner: boolean = false;
+  private isWinner = false;
   private source = interval(1000);
   private isPaused: boolean = false;
 
@@ -25,6 +27,8 @@ export class PokemonService {
     withCredentials: false
   };
   private message: Message;
+
+  private pokemons: Pokemon[] = [];
 
   fight(pokemon1: Pokemon, pokemon2: Pokemon, attacker: Pokemon): Observable<Message> {
     return interval(1000).pipe(
@@ -80,7 +84,7 @@ export class PokemonService {
       .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .pipe(
         map((x: any) => {
-          console.log(x);
+          // console.log(x);
           return new Pokemon(x.name, x.sprites.front_default, x.stats[0].base_stat, x.stats[4].base_stat, x.stats[5].base_stat);
         })
       );
@@ -96,7 +100,7 @@ export class PokemonService {
     return forkJoin(requests);
   }
 
-  pause(){
+  pause() {
    this.isPaused = !this.isPaused;
   }
 }
