@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PokemonComponent } from './pokemon.component';
 import {HttpTestingController} from '@angular/common/http/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ActivatedRoute} from "@angular/router";
 
 describe('PokemonComponent', () => {
   let component: PokemonComponent;
@@ -10,13 +11,13 @@ describe('PokemonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PokemonComponent ],
-      providers: [PokemonComponent],
-      imports: [HttpClientTestingModule]
+      providers: [PokemonComponent, ActivatedRoute],
+      imports: [HttpClientTestingModule, ActivatedRoute]
     })
     .compileComponents();
   }));
 
- /* beforeEach(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(PokemonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -25,7 +26,7 @@ describe('PokemonComponent', () => {
   test('should create', async(() => {
     expect(component).toBeTruthy();
   }));
-
+/*
   test('pause should call clearInterval', async(() => {
     fixture = TestBed.createComponent(PokemonComponent);
     component = fixture.componentInstance;
